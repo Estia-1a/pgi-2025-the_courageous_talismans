@@ -14,3 +14,20 @@
 void helloWorld() {
     printf("Hello World !");
 }
+
+void first_pixel (char *source_path){
+    unsigned char *data = NULL;
+    int width, height, channel_count;
+
+    if(read_image_data(source_path, &data, &width, &height, &channel_count) !=0){
+        fprintf(stderr, "Erreur de lecture de l'image.\n");
+        return;
+    }
+
+    unsigned char r = data[0];
+    unsigned char g = data[1];
+    unsigned char b = data[2];
+
+    printf("first_pixel : %d, %d, %d\n", r, g, b);
+    free(data);
+}
