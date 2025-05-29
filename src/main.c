@@ -34,9 +34,8 @@ int main(int argc, char **argv) {
   /*
    * TO COMPLETE
    */
-
   if (strncmp(configuration.command, "first_pixel", 11) == 0) {
-    first_pixel("./images/input/image.jpeg"); 
+    first_pixel(configuration.filenames[0]); 
   }
   
   return 0;

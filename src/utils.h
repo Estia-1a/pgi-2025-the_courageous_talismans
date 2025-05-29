@@ -9,10 +9,9 @@
 */
 
 typedef struct _pixelRGB {
-  /*
-   * TO COMPLETE
-   */
-   char R ; 
+  unsigned char r;
+  unsigned char g;
+  unsigned char b; 
 } pixelRGB ;
 
 

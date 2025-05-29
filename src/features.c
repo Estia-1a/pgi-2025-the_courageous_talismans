@@ -11,23 +11,22 @@
  * When the feature is totally implemented, your commit message must contain "close #n".
  */
 
-void helloWorld() {
-    printf("Hello World !");
-}
+
 
 void first_pixel (char *source_path){
     unsigned char *data = NULL;
-    int width, height, channel_count;
+    int width=0, height=0, channel_count=0;
 
-    if(read_image_data(source_path, &data, &width, &height, &channel_count) !=0){
-        fprintf(stderr, "Erreur de lecture de l'image.\n");
-        return;
-    }
+    read_image_data(source_path, &data, &width, &height, &channel_count);
 
     unsigned char r = data[0];
     unsigned char g = data[1];
     unsigned char b = data[2];
 
     printf("first_pixel : %d, %d, %d\n", r, g, b);
-    free(data);
+    
+}
+
+void helloWorld() {
+    printf("Hello World !");
 }
