@@ -17,9 +17,9 @@ void helloWorld() {
 
 void second_line (char *source_path){
     unsigned char *data = NULL;
-    int width=0, height=0, channel_count=0;
+    int width=0, height=0, channel=0;
 
-    read_image_data(source_path, &data, &width, &height, &channel_count);
+    read_image_data(source_path, &data, &width, &height, &channel);
 
     unsigned char r = data[0];
     unsigned char g = data[1];
@@ -28,11 +28,17 @@ void second_line (char *source_path){
     printf("second_line : %d, %d, %d\n", r, g, b);
     
 }
+
 void dimension (char *source_path) {
     int width, height, channel;
     unsigned char *data;
 
     read_image_data(source_path, &data, &width, &height, &channel);
         printf("dimention : %d, %d\n", width, height);
+
+}
+
+void max_pixel (char *source_path) {
+    read_image_data(source_path, &data, &width, &height, &channel);
 
 }
