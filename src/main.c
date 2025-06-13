@@ -37,21 +37,18 @@ int main(int argc, char **argv) {
  
   if (strncmp(configuration.command, "tenth_pixel", 11) == 0) {
     tenth_pixel(configuration.filenames[0]);
-  /*
-   * TO COMPLETE
-   */
+  }
+
   if (strncmp(configuration.command, "first_pixel", 11) == 0) {
     first_pixel(configuration.filenames[0]); 
   }
   
-  /*
-   * Dimention
-   */
   if (strncmp(configuration.command, "second_line", 8) == 0) {
     second_line(configuration.filenames[0]);
-}
+  }
+  
   if (strncmp(configuration.command, "dimension", 9) == 0) {
     dimension(configuration.filenames[0]);
-}
+  }
   return 0;
 }
