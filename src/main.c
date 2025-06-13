@@ -35,7 +35,7 @@ int main(int argc, char **argv) {
    * Dimention
    */
   if (strncmp(configuration.command, "dimension", 9) == 0) {
-    dimension("./images/input/image.jpeg");
+    dimension(configuration.filenames[0]);
 }
   return 0;
 }
