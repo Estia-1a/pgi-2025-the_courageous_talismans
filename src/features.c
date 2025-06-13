@@ -25,6 +25,6 @@ void second_line (char *source_path){
     unsigned char g = data[1];
     unsigned char b = data[2];
 
-    printf("first_pixel : %d, %d, %d\n", r, g, b);
+    printf("second_line : %d, %d, %d\n", r, g, b);
     
 }
