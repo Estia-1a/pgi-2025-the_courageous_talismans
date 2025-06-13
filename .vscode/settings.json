@@ -6,11 +6,12 @@
             "-f",
             "images/input/image.jpeg",
             "-c",
-            "helloworld"
+            "dimension"
         ],
         "cwd": "${workspaceFolder}"
     },
     "files.associations": {
         "unistd.h": "c"
     },
+    "C_Cpp.errorSquiggles": "disabled",
 }

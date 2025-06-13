@@ -32,9 +32,10 @@ int main(int argc, char **argv) {
     helloWorld();
   }
   /*
-   * TO COMPLETE
+   * Dimention
    */
-  
-  
+  if (strncmp(configuration.command, "dimension", 9) == 0) {
+    dimension(configuration.filenames[0]);
+}
   return 0;
 }
