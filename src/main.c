@@ -32,9 +32,9 @@ int main(int argc, char **argv) {
     helloWorld();
   }
  
-  if (strcmp(configuration.command, "tenth_pixel") == 0) {
+  if (strncmp(configuration.command, "tenth_pixel", 11) == 0) {
     tenth_pixel(configuration.filenames[0]);
-}
+  }
   
   return 0;
 }
