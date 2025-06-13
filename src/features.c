@@ -40,5 +40,5 @@ void dimension (char *source_path) {
 
 void max_pixel (char *source_path) {
     read_image_data(source_path, &data, &width, &height, &channel);
-
+    
 }
