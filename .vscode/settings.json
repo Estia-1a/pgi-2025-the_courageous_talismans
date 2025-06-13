@@ -6,12 +6,16 @@
             "-f",
             "images/input/image.jpeg",
             "-c",
-            "dimension"
+            "tenth_pixel"
+            
         ],
         "cwd": "${workspaceFolder}"
     },
     "files.associations": {
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "estia-image.h": "c",
+        "features.h": "c",
+        "stdio.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled",
 }
