@@ -31,9 +31,8 @@ int main(int argc, char **argv) {
     /* helloworld() function is defined in feature.h and implemented in feature.c */
     helloWorld();
   }
-  /*
-   * TO COMPLETE
-   */
-  
+  if ( strncmp( configuration.command, "print_pixel", 12 ) == 0 ) {
+    print_pixel(configuration.filenames[0], 45, 500);
+  }
   return 0;
 }
