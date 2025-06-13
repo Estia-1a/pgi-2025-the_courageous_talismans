@@ -15,6 +15,19 @@ void helloWorld() {
     printf("Hello World !");
 }
 
+void second_line (char *source_path){
+    unsigned char *data = NULL;
+    int width=0, height=0, channel_count=0;
+
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+
+    unsigned char r = data[0];
+    unsigned char g = data[1];
+    unsigned char b = data[2];
+
+    printf("second_line : %d, %d, %d\n", r, g, b);
+    
+}
 void dimension (char *source_path) {
     int width, height, channel;
     unsigned char *data;

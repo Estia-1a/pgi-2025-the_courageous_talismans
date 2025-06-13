@@ -34,6 +34,9 @@ int main(int argc, char **argv) {
   /*
    * Dimention
    */
+  if (strncmp(configuration.command, "second_line", 8) == 0) {
+    second_line(configuration.filenames[0]);
+}
   if (strncmp(configuration.command, "dimension", 9) == 0) {
     dimension(configuration.filenames[0]);
 }
