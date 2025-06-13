@@ -6,11 +6,14 @@
             "-f",
             "images/input/image.jpeg",
             "-c",
-            "helloworld"
+            "tenth_pixel"
         ],
         "cwd": "${workspaceFolder}"
     },
     "files.associations": {
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "estia-image.h": "c",
+        "features.h": "c",
+        "stdio.h": "c"
     },
 }
