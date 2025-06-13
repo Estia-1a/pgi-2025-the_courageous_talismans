@@ -34,6 +34,8 @@ int main(int argc, char **argv) {
   /*
    * TO COMPLETE
    */
-  
+  if (strncmp(configuration.command, "second_line", 8) == 0) {
+    second_line(configuration.filenames[0]);
+}
   return 0;
 }
