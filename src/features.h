@@ -4,4 +4,6 @@
 
 void helloWorld();
 
+void second_line(char *source_path);
+
 #endif
