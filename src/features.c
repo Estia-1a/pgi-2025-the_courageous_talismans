@@ -68,8 +68,8 @@ void color_red(const char *filename){
 
     for (int i=0; i<width*height; i++){
         int index=i*n;
-        nouvelle_image[index+0]=data[index+0];
-        if (n>1) nouvelle_image[index+1]=0;
+        if (n>0) nouvelle_image[index+0]=0;
+        if (n>1) nouvelle_image[index+1]=data[index+1];
         if (n>2) nouvelle_image[index+2]=0;
         
     }
