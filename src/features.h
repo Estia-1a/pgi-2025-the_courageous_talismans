@@ -3,5 +3,6 @@
 
 
 void helloWorld();
+void color_red (const char *filename);
 
 #endif
