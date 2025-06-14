@@ -3,5 +3,5 @@
 
 
 void helloWorld();
-void color_green (const char *filename);
+void color_bleu (const char *filename);
 #endif
