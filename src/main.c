@@ -31,9 +31,9 @@ int main(int argc, char **argv) {
     /* helloworld() function is defined in feature.h and implemented in feature.c */
     helloWorld();
   }
-  /*
-   * TO COMPLETE
-   */
+  if (strncmp(configuration.command, "color_red", 10)==0){
+    color_red(configuration.filenames[0]);
+  }
   
   return 0;
 }
