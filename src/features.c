@@ -38,6 +38,7 @@ void first_pixel (char *source_path){
     
 }
 
+
 void second_line (char *source_path){
     unsigned char *data = NULL;
     int width=0, height=0, channel_count=0;
@@ -51,6 +52,8 @@ void second_line (char *source_path){
     printf("second_line : %d, %d, %d\n", r, g, b);
     
 }
+
+
 void dimension (char *source_path) {
     int width, height, channel;
     unsigned char *data;
@@ -59,6 +62,7 @@ void dimension (char *source_path) {
         printf("dimention : %d, %d\n", width, height);
 
 }
+
 
 void color_red(const char *filename){
     unsigned char *data = NULL;
@@ -77,7 +81,25 @@ void color_red(const char *filename){
     write_image_data("image_out.bmp", nouvelle_image, width, height);
 }
 
+
 void color_green(const char *filename){
+    unsigned char *data = NULL;
+    int width, height, n;
+    read_image_data(filename, &data, &width, &height, &n);
+    unsigned char *nouvelle_image = malloc(width*height*n);
+
+    for (int i=0; i<width*height; i++){
+        int index=i*n;
+        if(n>0) nouvelle_image[index+0]=0;
+        if(n>1) nouvelle_image[index+1]=data[index+1];
+        if(n>2) nouvelle_image[index+2]=0;
+    }
+
+    write_image_data("image_out.bmp", nouvelle_image, width,height);
+}
+
+
+void color_bleu(const char *filename){
     unsigned char *data = NULL;
     int width, height, n;
     read_image_data(filename, &data, &width, &height, &n);
@@ -93,6 +115,7 @@ void color_green(const char *filename){
 
     write_image_data("image_out.bmp", nouvelle_image, width, height);
 }
+
 
 void helloWorld() {
     printf("Hello World !");
