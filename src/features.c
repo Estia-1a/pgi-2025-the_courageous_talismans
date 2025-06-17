@@ -136,6 +136,23 @@ void color_gray(const char *filename){
     write_image_data("image_out.bmp", nouvelle_image, width, height);
 }
 
+void color_invert(const char *filename){
+    unsigned char *data = NULL;
+    int width, height, n;
+    read_image_data(filename, &data, &width, &height, &n);
+    unsigned char *nouvelle_image = malloc(width*height*n);
+
+    for (int i=0; i<width*height; i++){
+        int index=i*n;
+
+        if (n>0) nouvelle_image[index+0]=255 - data[index+0];
+        if (n>1) nouvelle_image[index+1]=255 - data[index+1];
+        if (n>2) nouvelle_image[index+2]=255 - data[index+2];
+    }
+
+    write_image_data("image_out.bmp", nouvelle_image, width, height);
+}
+
 void helloWorld() {
     printf("Hello World !");
 }
