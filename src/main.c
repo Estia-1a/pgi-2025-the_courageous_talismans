@@ -86,5 +86,12 @@ int main(int argc, char **argv) {
     print_pixel(configuration.filenames[0], 45, 500);
   }
 
+}
+
+  if (strncmp(configuration.command, "max_component", 14) == 0) {
+    max_component(configuration.filenames[0],'R');
+    max_component(configuration.filenames[0],'G');
+    max_component(configuration.filenames[0],'B'); 
+}
   return 0;
 }
