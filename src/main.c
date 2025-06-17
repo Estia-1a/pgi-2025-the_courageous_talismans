@@ -64,6 +64,10 @@ int main(int argc, char **argv) {
     color_invert(configuration.filenames[0]);
   }
 
+  if (strncmp(configuration.command, "color_gray_luminance", 21)==0){
+    color_gray_luminance(configuration.filenames[0]);
+  }
+  
   if (strncmp(configuration.command, "second_line", 8) == 0) {
     second_line(configuration.filenames[0]);
   }
@@ -71,5 +75,7 @@ int main(int argc, char **argv) {
   if (strncmp(configuration.command, "dimension", 9) == 0) {
     dimension(configuration.filenames[0]);
   }
+
+
   return 0;
 }
