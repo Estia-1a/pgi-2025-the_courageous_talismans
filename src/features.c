@@ -97,6 +97,39 @@ void max_pixel (char *source_path) {
     
 }
 
+void min_pixel (char *source_path) {
+    unsigned char *data = NULL;
+    int width = 0, height = 0, channel = 0;
+    read_image_data(source_path, &data, &width, &height, &channel);
+    
+    int sum_min = 766;
+    int min_x = 0;
+    int min_y= 0;
+
+    for (int y =0; y < height; y++){
+        for (int x =0; x < width; x++){
+            pixelRGB *current_pixel = get_pixel(data, width, height, channel, x, y);
+
+            if (current_pixel != NULL){
+                int sum = (*current_pixel).r + (*current_pixel).g + (*current_pixel).b;
+                
+                if (sum < sum_min){
+                    sum_min = sum;
+                    min_x = x;
+                    min_y = y;
+                }
+           }
+        }
+    }
+    pixelRGB *final_pixel = get_pixel(data, width, height, channel, min_x, min_y);
+
+    if (final_pixel != NULL){
+        printf("min_pixel (%d, %d): %d, %d, %d\n", min_x, min_y, (*final_pixel).r, (*final_pixel).g, (*final_pixel).b);
+    }
+    
+    
+}
+
 
 void color_red(const char *filename){
     unsigned char *data = NULL;

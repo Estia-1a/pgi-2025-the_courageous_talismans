@@ -14,3 +14,4 @@ print_pixel
 second_line
 dimension
 max_pixel
+min_pixel
