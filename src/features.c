@@ -116,6 +116,25 @@ void color_bleu(const char *filename){
     write_image_data("image_out.bmp", nouvelle_image, width, height);
 }
 
+void color_gray(const char *filename){
+    unsigned char *data = NULL;
+    int width, height, n;
+    read_image_data(filename, &data, &width, &height, &n);
+    unsigned char *nouvelle_image = malloc(width*height*n);
+
+    for (int i=0; i<width*height; i++){
+        int index=i*n;
+
+        unsigned char gray = (data[index+0]+data[index+1]+data[index+2])/3;
+
+        if (n>0) nouvelle_image[index+0]=gray;
+        if (n>1) nouvelle_image[index+1]=gray;
+        if (n>2) nouvelle_image[index+2]=gray;
+        
+    }
+
+    write_image_data("image_out.bmp", nouvelle_image, width, height);
+}
 
 void helloWorld() {
     printf("Hello World !");

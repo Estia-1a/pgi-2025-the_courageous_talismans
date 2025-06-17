@@ -5,3 +5,6 @@ tenth_pixel
 print_pixel
 first_pixel
 color_red
+color_bleu
+color_green
+color_gray

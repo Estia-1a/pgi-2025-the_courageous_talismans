@@ -55,6 +55,10 @@ int main(int argc, char **argv) {
   if (strncmp(configuration.command, "color_bleu", 10)==0){
     color_bleu(configuration.filenames[0]);
   }
+
+  if (strncmp(configuration.command, "color_gray", 10)==0){
+    color_gray(configuration.filenames[0]);
+  }
   
   if (strncmp(configuration.command, "second_line", 8) == 0) {
     second_line(configuration.filenames[0]);
