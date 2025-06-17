@@ -33,9 +33,47 @@ int main(int argc, char **argv) {
   }
 
 
+  
+  if ( strncmp( configuration.command, "print_pixel", 12 ) == 0 ) {
+    print_pixel(configuration.filenames[0], 45, 500);
+  }
+ 
+  if (strncmp(configuration.command, "tenth_pixel", 11) == 0) {
+    tenth_pixel(configuration.filenames[0]);
+  }
+
+  if (strncmp(configuration.command, "first_pixel", 11) == 0) {
+    first_pixel(configuration.filenames[0]); 
+  }
+  
+  if (strncmp(configuration.command, "color_red", 10)==0){
+    color_red(configuration.filenames[0]);
+  }
+
+  if (strncmp(configuration.command, "color_green", 10)==0){
+    color_green(configuration.filenames[0]);
+  }
+
+  if (strncmp(configuration.command, "color_bleu", 10)==0){
+    color_bleu(configuration.filenames[0]);
+  }
+
+  if (strncmp(configuration.command, "color_gray", 10)==0){
+    color_gray(configuration.filenames[0]);
+  }
+
+   if (strncmp(configuration.command, "color_invert", 13)==0){
+    color_invert(configuration.filenames[0]);
+  }
+
+  if (strncmp(configuration.command, "color_gray_luminance", 21)==0){
+    color_gray_luminance(configuration.filenames[0]);
+  }
+  
   if (strncmp(configuration.command, "second_line", 8) == 0) {
     second_line(configuration.filenames[0]);
-}
+  }
+  
   if (strncmp(configuration.command, "dimension", 9) == 0) {
     dimension(configuration.filenames[0]);
 }
@@ -45,5 +83,6 @@ if (strncmp(configuration.command, "max_pixel", 9) == 0) {
   if ( strncmp( configuration.command, "print_pixel", 12 ) == 0 ) {
     print_pixel(configuration.filenames[0], 45, 500);
   }
+
   return 0;
 }
