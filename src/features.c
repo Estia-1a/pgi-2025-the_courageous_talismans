@@ -162,7 +162,7 @@ void color_gray_luminance(const char *filename){
     for (int i=0; i<width*height; i++){
         int index=i*n;
 
-        unsigned char gray_luminance = 0.21*data[index+0]+0.72*data[index+1]+0.07*data[index+2]);
+        unsigned char gray_luminance = 0.21*data[index+0]+0.72*data[index+1]+0.07*data[index+2];
 
         if (n>0) nouvelle_image[index+0]=gray_luminance;
         if (n>1) nouvelle_image[index+1]=gray_luminance;
