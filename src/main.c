@@ -85,6 +85,6 @@ int main(int argc, char **argv) {
   if ( strncmp( configuration.command, "print_pixel", 12 ) == 0 ) {
     print_pixel(configuration.filenames[0], 45, 500);
   }
->>>>>>>>> Temporary merge branch 2
+
   return 0;
 }
