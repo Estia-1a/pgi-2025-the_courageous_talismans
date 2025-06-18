@@ -431,3 +431,30 @@ void color_desaturate(const char *filename){
 
     write_image_data("image_out.bmp", nouvelle_image, width, height);
 }
+
+void scale_nearest (const char *filename, float scale){
+    unsigned char *data = NULL;
+    int width, height, n;
+    read_image_data(filename, &data, &width, &height, &n);
+    int nouvelle_largeur = scale*width;
+    int nouvelle_hauteur = scale*height;
+    unsigned char *nouvelle_image = malloc(nouvelle_largeur*nouvelle_hauteur*n);
+
+    for (int y=0 ; y<nouvelle_hauteur ; y++){
+        for (int x=0 ; x<nouvelle_largeur ; x++){
+            int xx=x/scale;
+            int yy=y/scale;
+            if(xx>=width) xx=width-1;
+            if(yy>=height) yy=height-1;
+
+            int index = (yy*width+xx)*n;
+            int nouvelle_index = (y*nouvelle_largeur+x)*n;
+
+            for (int c=0 ; c<n ; c++){
+                nouvelle_image[nouvelle_index+c]=data[index+c];
+            }
+        }
+    }
+    write_image_data("image_out.bmp", nouvelle_image, nouvelle_largeur, nouvelle_hauteur);
+
+}
