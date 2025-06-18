@@ -210,6 +210,7 @@ void color_gray_luminance(const char *filename){
 void helloWorld() {
     printf("Hello World !");
 }
+
 void max_component(char *source_path, char component){
     unsigned char *data = NULL;
     int width=0, height=0, channel_count=0;
@@ -251,4 +252,24 @@ void max_component(char *source_path, char component){
     }
     
     printf("max_component %c (%d, %d): %d\n", component, max_x, max_y, max_value);
+}
+
+void rotate_cw(const char *filename){
+    unsigned char *data = NULL;
+    int width, height, n;
+    read_image_data(filename, &data, &width, &height, &n);
+
+    unsigned char *nouvelle_image = malloc(width*height*n);
+
+    for (int y=0; y<height; y++){
+        for(int x=0; x<width; x++){
+            int index=(y*width+x)*n;
+            int nouveau_x=y;
+            int nouveau_y=width-1-x;
+            int nouvelle_index=(nouveau_x*height+nouveau_y)*n;
+            nouvelle_image[nouvelle_index]=data[index];
+        }
+    }
+
+    write_image_data("image_out.bmp", nouvelle_image, height, width);
 }
