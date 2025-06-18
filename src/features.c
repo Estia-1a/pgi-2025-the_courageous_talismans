@@ -24,7 +24,7 @@ void tenth_pixel(char *source_path) {
 
 
 
-void first_pixel (char *source_path){
+void second_line(char *source_path){
     unsigned char *data = NULL;
     int width=0, height=0, channel_count=0;
     int x = 0;
@@ -37,12 +37,12 @@ void first_pixel (char *source_path){
     unsigned char g = data[index + 1];
     unsigned char b = data[index + 2];
 
-    printf("first_pixel : %d, %d, %d\n", r, g, b);
+    printf("second_line : %d, %d, %d\n", r, g, b);
     
 }
 
 
-void second_line (char *source_path){
+void first_pixel (char *source_path){
     unsigned char *data = NULL;
     int width=0, height=0, channel=0;
 
@@ -52,7 +52,7 @@ void second_line (char *source_path){
     unsigned char g = data[1];
     unsigned char b = data[2];
 
-    printf("second_line : %d, %d, %d\n", r, g, b);
+    printf("first_pixel : %d, %d, %d\n", r, g, b);
     
 }
 
