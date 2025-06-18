@@ -22,4 +22,5 @@ void mirror_horizontal (const char *filename);
 void mirror_vertical (const char *filename);
 void rotate_acw (const char *filename);
 void mirror_total (const char *filename);
+void color_desaturate (const char *filename);
 #endif
