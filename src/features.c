@@ -166,7 +166,7 @@ void color_green(const char *filename){
 }
 
 
-void color_bleu(const char *filename){
+void color_blue(const char *filename){
     unsigned char *data = NULL;
     int width, height, n;
     read_image_data(filename, &data, &width, &height, &n);
