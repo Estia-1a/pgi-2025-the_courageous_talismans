@@ -117,9 +117,13 @@ int main(int argc, char **argv) {
   if (strncmp(configuration.command, "min_component", 14) == 0) {
       min_component(configuration.filenames[0], 'B');
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 33d102f (crop)
+=======
+
+>>>>>>> f5184cd8088926831399ce97b54ff699031217a6
   if (strncmp(configuration.command, "mirror_vertical", 16)==0){
     mirror_vertical(configuration.filenames[0]);
   }
@@ -133,6 +137,7 @@ int main(int argc, char **argv) {
   }
 
   if (strncmp(configuration.command, "scale_nearest", 14)==0){
+<<<<<<< HEAD
     float scale=atof(configuration.arguments[0]);
     scale_nearest(configuration.filenames[0], scale);
   }
@@ -162,11 +167,29 @@ int main(int argc, char **argv) {
     color_desaturate(configuration.filenames[0]);
   }
 
+=======
+>>>>>>> f5184cd8088926831399ce97b54ff699031217a6
 if (strncmp(configuration.command, "scale_nearest", 14)==0){
     float scale=atof(configuration.arguments[0]);
     scale_nearest(configuration.filenames[0], scale);
   }
 
+  if (strncmp(configuration.command, "stat_report", 11) == 0) {
+      stat_report(configuration.filenames[0]);
+  }
+
+  if (strncmp(configuration.command, "scale_crop", 10)==0){
+  int center_x = atoi(argv[5]);
+  int center_y = atoi(argv[6]);
+  int crop_width = atoi(argv[7]);
+  int crop_height = atoi(argv[8]);
+  scale_crop(configuration.filenames[0], center_x, center_y, crop_width, crop_height);
+  }
+
+  return 0;
+
+  }
+}
    if (strncmp(configuration.command, "stat_report", 11) == 0) {
       stat_report(configuration.filenames[0]);
   }

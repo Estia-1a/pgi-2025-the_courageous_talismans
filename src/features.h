@@ -22,6 +22,10 @@ void mirror_horizontal (const char *filename);
 void mirror_vertical (const char *filename);
 void rotate_acw (const char *filename);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+void scale_crop (const char *filename, int center_x, int center_y, int crop_w, int crop_h);
+>>>>>>> f5184cd8088926831399ce97b54ff699031217a6
 void mirror_total (const char *filename);
 void color_desaturate (const char *filename);
 void scale_nearest (const char *filename, float scale);

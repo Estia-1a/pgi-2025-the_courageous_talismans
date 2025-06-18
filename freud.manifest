@@ -20,6 +20,11 @@ rotate_acw
 min_pixel
 mirror_horizontal
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+mirror_vertical
+scale_crop
+>>>>>>> f5184cd8088926831399ce97b54ff699031217a6
 min_component
 mirror_vertical
 mirror_total

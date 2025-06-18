@@ -430,6 +430,30 @@ void mirror_vertical(const char *filename){
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+void scale_crop(const char *filename, int center_x, int center_y, int crop_w, int crop_h){
+    unsigned char *data = NULL;
+    int width, height, n;
+    read_image_data(filename, &data, &width, &height, &n);
+    
+    unsigned char *nouvelle_image = malloc(crop_w*crop_h*n);
+
+    int source_x = center_x - crop_w /2;
+    int source_y = center_y - crop_h /2;
+
+    for (int y=0; y<crop_h; y++){
+        for(int x=0; x<crop_w; x++){
+            int source_index = ((source_y+y) * width + (source_x+ x)) * n;
+            int index=(y * crop_w + x) * n;
+
+            for(int c=0; c<n; c++) {                 
+                nouvelle_image[index+c]=data[source_index+c];
+            }
+        }
+    }
+    write_image_data("image_out.bmp", nouvelle_image, crop_w, crop_h);
+>>>>>>> f5184cd8088926831399ce97b54ff699031217a6
 void mirror_total(const char *filename){
     unsigned char *data = NULL;
     int width, height, n;
