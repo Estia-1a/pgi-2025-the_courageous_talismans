@@ -56,8 +56,8 @@ int main(int argc, char **argv) {
     color_green(configuration.filenames[0]);
   }
 
-  if (strncmp(configuration.command, "color_bleu", 10)==0){
-    color_bleu(configuration.filenames[0]);
+  if (strncmp(configuration.command, "color_blue", 10)==0){
+    color_blue(configuration.filenames[0]);
   }
 
   if (strncmp(configuration.command, "color_gray", 10)==0){
@@ -130,6 +130,7 @@ int main(int argc, char **argv) {
   }
 
   if (strncmp(configuration.command, "scale_nearest", 14)==0){
+if (strncmp(configuration.command, "scale_nearest", 14)==0){
     float scale=atof(configuration.arguments[0]);
     scale_nearest(configuration.filenames[0], scale);
   }
@@ -150,3 +151,10 @@ int main(int argc, char **argv) {
 
   }
 }
+   if (strncmp(configuration.command, "stat_report", 11) == 0) {
+      stat_report(configuration.filenames[0]);
+  }
+
+  return 0;
+}
+

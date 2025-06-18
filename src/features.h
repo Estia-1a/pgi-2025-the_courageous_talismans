@@ -12,7 +12,7 @@ void min_pixel(char *source_path);
 void first_pixel (char *source_path);
 void color_red (const char *filename);
 void color_green (const char *filename);
-void color_bleu (const char *filename);
+void color_blue (const char *filename);
 void color_gray (const char *filename);
 void color_invert (const char *filename);
 void color_gray_luminance (const char *filename);
@@ -22,4 +22,11 @@ void mirror_horizontal (const char *filename);
 void mirror_vertical (const char *filename);
 void rotate_acw (const char *filename);
 void scale_crop (const char *filename, int center_x, int center_y, int crop_w, int crop_h);
+void mirror_total (const char *filename);
+void color_desaturate (const char *filename);
+void scale_nearest (const char *filename, float scale);
+void min_component(char*source_path, char component);
+void stat_report(char *source_path);
+
+
 #endif

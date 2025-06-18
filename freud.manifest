@@ -21,3 +21,7 @@ min_pixel
 mirror_horizontal
 mirror_vertical
 scale_crop
+min_component
+mirror_vertical
+mirror_total
+stat_report
