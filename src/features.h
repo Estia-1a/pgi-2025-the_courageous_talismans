@@ -20,5 +20,7 @@ void max_component(char *source_path, char component);
 void rotate_cw (const char *filename);
 void mirror_horizontal (const char *filename);
 void min_component(char*source_path, char component);
+void stat_report(char *source_path);
+
 
 #endif
