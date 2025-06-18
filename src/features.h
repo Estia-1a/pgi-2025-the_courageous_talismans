@@ -24,4 +24,8 @@ void rotate_acw (const char *filename);
 void mirror_total (const char *filename);
 void color_desaturate (const char *filename);
 void scale_nearest (const char *filename, float scale);
+void min_component(char*source_path, char component);
+void stat_report(char *source_path);
+
+
 #endif

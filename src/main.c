@@ -106,6 +106,16 @@ int main(int argc, char **argv) {
     mirror_horizontal(configuration.filenames[0]);
   }
 
+  if (strncmp(configuration.command, "min_component", 14) == 0) {
+      min_component(configuration.filenames[0], 'R');
+  }
+  
+  if (strncmp(configuration.command, "min_component", 14) == 0) {
+      min_component(configuration.filenames[0], 'G');
+  }
+
+  if (strncmp(configuration.command, "min_component", 14) == 0) {
+      min_component(configuration.filenames[0], 'B');
   if (strncmp(configuration.command, "mirror_vertical", 16)==0){
     mirror_vertical(configuration.filenames[0]);
   }
@@ -123,5 +133,11 @@ if (strncmp(configuration.command, "scale_nearest", 14)==0){
     scale_nearest(configuration.filenames[0], scale);
   }
 
+   if (strncmp(configuration.command, "stat_report", 11) == 0) {
+      stat_report(configuration.filenames[0]);
+  }
+
   return 0;
+  }
 }
+

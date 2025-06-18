@@ -316,7 +316,7 @@ void rotate_cw(const char *filename){
             for(int c=0; c<n; c++){
                 int index=(y*width+x)*n+c;
                 int nouveau_x=x;
-                int nouveau_y=width-1-y;
+                int nouveau_y=height-1-y;
                 int index2=(nouveau_x*height+nouveau_y)*n+c;
                 nouvelle_image[index2]=data[index];
             }
@@ -374,6 +374,50 @@ void mirror_horizontal(const char *filename){
     }
 
     write_image_data("image_out.bmp", nouvelle_image, width, height);
+
+}
+
+void min_component(char *source_path, char component){
+    unsigned char *data = NULL;
+    int width = 0, height = 0, channel_count = 0;
+
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+
+    int component_index;
+    if (component == 'R') {
+        component_index = 0;
+    } 
+    else if (component == 'G') {
+        component_index = 1;
+    } 
+    else if (component == 'B') {
+        component_index = 2;
+    }
+
+    int x;
+    int y;
+
+    int min_value = 256;
+    int min_x = 0;
+    int min_y = 0;
+
+    for (y = 0; y < height; y++) {
+        for (x = 0; x < width; x++) {
+            int index;
+            index = (y * width + x) * channel_count + component_index;
+            
+            int value;
+            value = data[index];
+
+            if (value < min_value){
+                min_value = value;
+                min_x = x;
+                min_y = y;
+            }
+        }
+    }
+
+    printf("min_component %c (%d, %d): %d\n", component, min_x, min_y, min_value);
 }
 
 void mirror_vertical(const char *filename){
@@ -471,4 +515,83 @@ void scale_nearest (const char *filename, float scale){
     }
     write_image_data("image_out.bmp", nouvelle_image, nouvelle_largeur, nouvelle_hauteur);
 
+}
+
+void stat_report(char *source_path) {
+    FILE *file = fopen("report.txt", "w");
+    
+    unsigned char *data = NULL;
+    int width, height, channel_count;
+ 
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+    
+    int som_max = -1; //somme max R+G+B donc on part d'une valeur qui ne sera que plus petit
+    int max_x = 0;
+    int max_y = 0;
+    int R_max = 0;
+    int G_max = 0; 
+    int B_max = 0;
+
+
+    int som_min = 256*3+1; //somme min R+G+B donc on part d'une valeur qui ne sera que plus grande
+    int min_x = 0;
+    int min_y = 0;
+    int R_min = 0;
+    int G_min = 0;
+    int B_min = 0;
+
+
+    int R_min_val = 255;
+    int R_max_val = 0;
+    int G_min_val = 255; 
+    int G_max_val = 0;
+    int B_min_val = 255;
+    int B_max_val = 0;
+ 
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            int index;
+            index = (y * width + x) * 3;
+
+            int R = data[index];
+            int G = data[index + 1];
+            int B = data[index + 2];
+ 
+            int som = R + G + B;
+ 
+            if (som > som_max) {
+                som_max = som;
+                max_x = x;
+                max_y = y;
+                R_max = R;
+                G_max = G;
+                B_max = B;
+            }
+            if (som < som_min) {
+                som_min = som;
+                min_x = x;
+                min_y = y;
+                R_min = R;
+                G_min = G;
+                B_min = B;
+            }
+ 
+            if (R < R_min_val) R_min_val = R;
+            if (R > R_max_val) R_max_val = R;
+            if (G < G_min_val) G_min_val = G;
+            if (G > G_max_val) G_max_val = G;
+            if (B < B_min_val) B_min_val = B;
+            if (B > B_max_val) B_max_val = B;
+        }
+    }
+    fprintf(file, "max_pixel (%d, %d): %d, %d, %d\n\n", max_x, max_y, R_max, G_max, B_max);
+    fprintf(file, "min_pixel (%d, %d): %d, %d, %d\n\n", min_x, min_y, R_min, G_min, B_min);
+    fprintf(file, "max_component R: %d\n", R_max_val);
+    fprintf(file, "max_component G: %d\n", G_max_val);
+    fprintf(file, "max_component B: %d\n\n", B_max_val);
+    fprintf(file, "min_component R: %d\n", R_min_val);
+    fprintf(file, "min_component G: %d\n", G_min_val);
+    fprintf(file, "min_component B: %d\n", B_min_val);
+ 
+    fclose(file);
 }
