@@ -15,4 +15,7 @@ void color_bleu (const char *filename);
 void color_gray (const char *filename);
 void color_invert (const char *filename);
 void color_gray_luminance (const char *filename);
+void max_component(char *source_path, char component);
+void rotate_cw (const char *filename);
+
 #endif
