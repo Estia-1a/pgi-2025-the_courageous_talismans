@@ -48,8 +48,14 @@ int main(int argc, char **argv) {
 
   if (strncmp(configuration.command, "max_component", 14) == 0) {
     max_component(configuration.filenames[0],'R');
+}
+
+if (strncmp(configuration.command, "max_component", 14) == 0) {
     max_component(configuration.filenames[0],'G');
-    max_component(configuration.filenames[0],'B'); 
+}
+
+if (strncmp(configuration.command, "max_component", 14) == 0) {
+    max_component(configuration.filenames[0],'B');
 }
   return 0;
 }
