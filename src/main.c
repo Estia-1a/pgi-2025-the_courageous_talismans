@@ -138,5 +138,6 @@ if (strncmp(configuration.command, "scale_nearest", 14)==0){
   }
 
   return 0;
+  }
 }
 
