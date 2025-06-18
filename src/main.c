@@ -93,5 +93,10 @@ int main(int argc, char **argv) {
     max_component(configuration.filenames[0],'G');
     max_component(configuration.filenames[0],'B'); 
   }
+
+  if (strncmp(configuration.command, "rotate_cw", 10)==0){
+    rotate_cw(configuration.filenames[0]);
+  }
+
   return 0;
 }
