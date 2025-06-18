@@ -46,16 +46,15 @@ int main(int argc, char **argv) {
     dimension(configuration.filenames[0]);
 }
 
-  if (strncmp(configuration.command, "max_component", 14) == 0) {
-    max_component(configuration.filenames[0],'R');
+ if (strcmp(configuration.command, "max_component") == 0) {
+    if (argc < 6) {
+        fprintf(stderr, "Usage: -c max_component <R|G|B>\n");
+        return 1;
+    }
+ 
+    char comp = argv[5][0];
+    max_component(configuration.filenames[0], comp);
 }
-
-if (strncmp(configuration.command, "max_component", 14) == 0) {
-    max_component(configuration.filenames[0],'G');
-}
-
-if (strncmp(configuration.command, "max_component", 14) == 0) {
-    max_component(configuration.filenames[0],'B');
-}
+ 
   return 0;
 }

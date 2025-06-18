@@ -47,46 +47,39 @@ void dimension (char *source_path) {
 
 }
 
-void max_component(char *source_path, char component){
+void max_component(char *filename, char component) {
     unsigned char *data = NULL;
-    int width=0, height=0, channel_count=0;
+    int width = 0, height = 0, channel_count = 0;
 
-    read_image_data(source_path, &data, &width, &height, &channel_count);
-        
-    int component_index;
-        if (component == 'R') {
-        component_index = 0;
-        } 
-        else if (component == 'G') {
-            component_index = 1;
-        } 
-        else if (component == 'B') {
-            component_index = 2;
-    } 
+    read_image_data(filename, &data, &width, &height, &channel_count);
 
-    int y;
-    int x;
 
     int max_value = -1;
-    int max_x = 0;
-    int max_y = 0;
+    int max_x = -1, max_y = -1;
 
-    for (y = 0; y<height; y++){
-        for (x = 0; x < width; x++){
-            int index;
-            index = (y*width + x) * channel_count + component_index;
+    int c_index = 0;
+    if (component == 'R') c_index = 0;
+    else if (component == 'G') c_index = 1;
+    else if (component == 'B') c_index = 2;
+    else {
+        fprintf(stderr, "Composante invalide : %c (utiliser R, G ou B)\n", component);
+        return;
+    }
 
-            int value;
-            value = data[index];
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            int index = (y * width + x) * channel_count;
+            if (channel_count < 3) continue; 
 
-            if (value > max_value){
+            int value = data[index + c_index];
+            if (value > max_value) {
                 max_value = value;
                 max_x = x;
                 max_y = y;
             }
         }
     }
-    
-    printf("max_component %c (%d, %d): %d\n", component, max_x, max_y, max_value);
-    
+
+    if (max_value >= 0)
+        printf("max_component %c (%d, %d): %d\n", component, max_x, max_y, max_value);
 }
