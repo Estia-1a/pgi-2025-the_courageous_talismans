@@ -20,3 +20,4 @@ rotate_acw
 min_pixel
 mirror_horizontal
 mirror_vertical
+scale_crop

@@ -98,8 +98,8 @@ int main(int argc, char **argv) {
     rotate_acw(configuration.filenames[0]);
   }
 
-    if (strncmp(configuration.command, "min_pixel", 9) == 0) {
-      min_pixel(configuration.filenames[0]);
+  if (strncmp(configuration.command, "min_pixel", 9) == 0) {
+    min_pixel(configuration.filenames[0]);
   }
 
   if (strncmp(configuration.command, "mirror_horizontal", 18)==0){
@@ -108,6 +108,15 @@ int main(int argc, char **argv) {
 
   if (strncmp(configuration.command, "mirror_vertical", 16)==0){
     mirror_vertical(configuration.filenames[0]);
+  }
+
+  if (strncmp(configuration.command, "scale_crop", 10)==0){
+    int cx= atoi(configuration.filenames[0]);
+    int cy= atoi(configuration.filenames[1]);
+    int w= atoi(configuration.filenames[2]);
+    int h= atoi(configuration.filenames[3]);
+    scale_crop(configuration.filenames[0], cx, cy, w, h);
+
   }
   
   return 0;

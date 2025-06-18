@@ -21,5 +21,5 @@ void rotate_cw (const char *filename);
 void mirror_horizontal (const char *filename);
 void mirror_vertical (const char *filename);
 void rotate_acw (const char *filename);
-
+void scale_crop (const char *filename, int center_x, int center_y, int crop_w, int crop_h);
 #endif
