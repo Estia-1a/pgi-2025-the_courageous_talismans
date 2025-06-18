@@ -263,11 +263,14 @@ void rotate_cw(const char *filename){
 
     for (int y=0; y<height; y++){
         for(int x=0; x<width; x++){
-            int index=(y*width+x)*n;
-            int nouveau_x=y;
-            int nouveau_y=width-1-x;
-            int nouvelle_index=(nouveau_x*height+nouveau_y)*n;
-            nouvelle_image[nouvelle_index]=data[index];
+            for(int c=0; c<n; c++){
+                int index=(y*width+x)*n+c;
+                int nouveau_x=x;
+                int nouveau_y=width-1-y;
+                int index2=(nouveau_x*height+nouveau_y)*n+c;
+                nouvelle_image[index2]=data[index];
+            }
+            
         }
     }
 
