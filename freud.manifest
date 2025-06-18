@@ -16,4 +16,5 @@ dimension
 max_pixel
 max_component
 rotate_cw
+rotate_acw
 min_pixel
