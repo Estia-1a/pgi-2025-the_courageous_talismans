@@ -47,45 +47,42 @@ void dimension (char *source_path) {
 
 }
 
-void min_component(char *source_path, char component){
-    unsigned char *data = NULL;
-    int width = 0, height = 0, channel_count = 0;
+    void min_component(char *filename, char component) {
+        unsigned char *data = NULL;
+        int width = 0, height = 0, channel_count = 0;
 
-    read_image_data(source_path, &data, &width, &height, &channel_count);
+        read_image_data(filename, &data, &width, &height, &channel_count);
+        if (data == NULL) {
+            fprintf(stderr, "Erreur : impossible de lire l'image %s\n", filename);
+            return;
+        }
 
-    int component_index;
-    if (component == 'R') {
-        component_index = 0;
-    } 
-    else if (component == 'G') {
-        component_index = 1;
-    } 
-    else if (component == 'B') {
-        component_index = 2;
-    }
+        int min_value = 256; 
+        int min_x = -1, min_y = -1;
 
-    int x;
-    int y;
+        int c_index = 0;
+        if (component == 'R') c_index = 0;
+        else if (component == 'G') c_index = 1;
+        else if (component == 'B') c_index = 2;
+        else {
+            fprintf(stderr, "Composante invalide : %c (utiliser R, G ou B)\n", component);
+            return;
+        }
 
-    int min_value = 256;
-    int min_x = 0;
-    int min_y = 0;
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                int index = (y * width + x) * channel_count;
+                if (channel_count < 3) continue; 
 
-    for (y = 0; y < height; y++) {
-        for (x = 0; x < width; x++) {
-            int index;
-            index = (y * width + x) * channel_count + component_index;
-            
-            int value;
-            value = data[index];
-
-            if (value < min_value){
-                min_value = value;
-                min_x = x;
-                min_y = y;
+                int value = data[index + c_index];
+                if (value < min_value) {
+                    min_value = value;
+                    min_x = x;
+                    min_y = y;
+                }
             }
         }
-    }
 
-    printf("min_component %c (%d, %d): %d\n", component, min_x, min_y, min_value);
+        if (min_value < 256)
+            printf("min_component %c (%d, %d): %d\n", component, min_x, min_y, min_value);
 }

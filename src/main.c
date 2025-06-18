@@ -46,14 +46,14 @@ int main(int argc, char **argv) {
     dimension(configuration.filenames[0]);
 }
 
-  if (strncmp(configuration.command, "min_component", 14) == 0) {
-    min_component(configuration.filenames[0], 'R');
-}
-  if (strncmp(configuration.command, "min_component", 14) == 0) {
-    min_component(configuration.filenames[0], 'G');
-}
-  if (strncmp(configuration.command, "min_component", 14) == 0) {
-    min_component(configuration.filenames[0], 'B');
+ if (strcmp(configuration.command, "min_component") == 0) {
+    if (argc < 6) {
+        fprintf(stderr, "Usage: -c min_component <R|G|B>\n");
+        return 1;
+    }
+ 
+    char comp = argv[5][0];
+    min_component(configuration.filenames[0], comp);
 }
   return 0;
 }
