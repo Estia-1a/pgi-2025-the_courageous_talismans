@@ -118,5 +118,10 @@ int main(int argc, char **argv) {
     color_desaturate(configuration.filenames[0]);
   }
 
+if (strncmp(configuration.command, "scale_nearest", 14)==0){
+    float scale=atof(configuration.arguments[0]);
+    scale_nearest(configuration.filenames[0], scale);
+  }
+
   return 0;
 }
