@@ -98,8 +98,8 @@ int main(int argc, char **argv) {
     rotate_acw(configuration.filenames[0]);
   }
 
-  if (strncmp(configuration.command, "min_pixel", 9) == 0) {
-    min_pixel(configuration.filenames[0]);
+    if (strncmp(configuration.command, "min_pixel", 9) == 0) {
+      min_pixel(configuration.filenames[0]);
   }
 
   if (strncmp(configuration.command, "mirror_horizontal", 18)==0){
@@ -116,18 +116,43 @@ int main(int argc, char **argv) {
 
   if (strncmp(configuration.command, "min_component", 14) == 0) {
       min_component(configuration.filenames[0], 'B');
+<<<<<<< HEAD
+=======
+
+>>>>>>> 33d102f (crop)
   if (strncmp(configuration.command, "mirror_vertical", 16)==0){
     mirror_vertical(configuration.filenames[0]);
   }
+  
+   if (strncmp(configuration.command, "mirror_total", 13)==0){
+    mirror_total(configuration.filenames[0]);
+  }
+
+  if (strncmp(configuration.command, "color_desaturate", 17)==0){
+    color_desaturate(configuration.filenames[0]);
+  }
+
+  if (strncmp(configuration.command, "scale_nearest", 14)==0){
+    float scale=atof(configuration.arguments[0]);
+    scale_nearest(configuration.filenames[0], scale);
+  }
+
+  if (strncmp(configuration.command, "stat_report", 11) == 0) {
+      stat_report(configuration.filenames[0]);
+  }
 
   if (strncmp(configuration.command, "scale_crop", 10)==0){
-    int cx= atoi(configuration.filenames[0]);
-    int cy= atoi(configuration.filenames[1]);
-    int w= atoi(configuration.filenames[2]);
-    int h= atoi(configuration.filenames[3]);
-    scale_crop(configuration.filenames[0], cx, cy, w, h);
+  int center_x = atoi(argv[5]);
+  int center_y = atoi(argv[6]);
+  int crop_width = atoi(argv[7]);
+  int crop_height = atoi(argv[8]);
+  scale_crop(configuration.filenames[0], center_x, center_y, crop_width, crop_height);
+  }
+
+  return 0;
 
   }
+<<<<<<< HEAD
   
    if (strncmp(configuration.command, "mirror_total", 13)==0){
     mirror_total(configuration.filenames[0]);
@@ -150,3 +175,6 @@ if (strncmp(configuration.command, "scale_nearest", 14)==0){
   }
 }
 
+=======
+}
+>>>>>>> 33d102f (crop)

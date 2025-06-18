@@ -590,20 +590,16 @@ void scale_crop(const char *filename, int center_x, int center_y, int crop_w, in
     
     unsigned char *nouvelle_image = malloc(crop_w*crop_h*n);
 
+    int source_x = center_x - crop_w /2;
+    int source_y = center_y - crop_h /2;
+
     for (int y=0; y<crop_h; y++){
         for(int x=0; x<crop_w; x++){
-            int source_x = center_x - crop_w /2 + x;
-            int source_y = center_y - crop_h /2 + y;
-            
-            for(int c=0; c<n; c++) {               
-                int nouveau_index = (y * crop_w + x) * n + c;
-                if (source_x>= 0 && source_x < width && source_y >= 0 && source_y < height){
-                    int index=(source_y * width + source_x) * n + c;
-                    nouvelle_image[nouveau_index]=data[index];
-                } else{
-                    nouvelle_image[nouveau_index] = 0;
-                }
-                
+            int source_index = ((source_y+y) * width + (source_x+ x)) * n;
+            int index=(y * crop_w + x) * n;
+
+            for(int c=0; c<n; c++) {                 
+                nouvelle_image[index+c]=data[source_index+c];
             }
         }
     }
