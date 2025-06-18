@@ -308,6 +308,33 @@ void rotate_cw(const char *filename){
     }
 
     write_image_data("image_out.bmp", nouvelle_image, height, width);
+    free(data);
+    free(nouvelle_image);
+}
+
+void rotate_acw(const char *filename){
+    unsigned char *data = NULL;
+    int width, height, n;
+    read_image_data(filename, &data, &width, &height, &n);
+
+    unsigned char *nouvelle_image = malloc(width*height*n);
+
+    for (int y=0; y<height; y++){
+        for(int x=0; x<width; x++){
+            for(int c=0; c<n; c++){
+                int index=(y*width+x)*n+c;
+                int nouveau_x=y;
+                int nouveau_y=width-1-x;
+                int index2=(nouveau_y*height+nouveau_x)*n+c;
+                nouvelle_image[index2]=data[index];
+            }
+            
+        }
+    }
+
+    write_image_data("image_out.bmp", nouvelle_image, height, width);
+    free(data);
+    free(nouvelle_image);
 }
 
 
