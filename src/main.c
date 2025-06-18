@@ -45,6 +45,16 @@ int main(int argc, char **argv) {
   if (strncmp(configuration.command, "dimension", 9) == 0) {
     dimension(configuration.filenames[0]);
 }
+
+  if (strncmp(configuration.command, "min_component", 14) == 0) {
+    min_component(configuration.filenames[0], 'R');
+}
+  if (strncmp(configuration.command, "min_component", 14) == 0) {
+    min_component(configuration.filenames[0], 'G');
+}
+  if (strncmp(configuration.command, "min_component", 14) == 0) {
+    min_component(configuration.filenames[0], 'B');
+}
   return 0;
 }
 

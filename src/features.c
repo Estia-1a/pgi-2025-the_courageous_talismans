@@ -56,9 +56,11 @@ void min_component(char *source_path, char component){
     int component_index;
     if (component == 'R') {
         component_index = 0;
-    } else if (component == 'G') {
+    } 
+    else if (component == 'G') {
         component_index = 1;
-    } else if (component == 'B') {
+    } 
+    else if (component == 'B') {
         component_index = 2;
     }
 
@@ -71,5 +73,19 @@ void min_component(char *source_path, char component){
 
     for (y = 0; y < height; y++) {
         for (x = 0; x < width; x++) {
-            int index = (y * width + x) * channel_count + component_index;
-            int value = data[index];
+            int index;
+            index = (y * width + x) * channel_count + component_index;
+            
+            int value;
+            value = data[index];
+
+            if (value > min_value){
+                min_value = value;
+                min_x = x;
+                min_y = y;
+            }
+        }
+    }
+
+    printf("min_component %c (%d, %d): %d\n", component, min_x, min_y, min_value);
+}
