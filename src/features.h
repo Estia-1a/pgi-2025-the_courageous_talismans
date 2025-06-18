@@ -19,5 +19,6 @@ void color_gray_luminance (const char *filename);
 void max_component(char *source_path, char component);
 void rotate_cw (const char *filename);
 void mirror_horizontal (const char *filename);
+void mirror_vertical (const char *filename);
 
 #endif

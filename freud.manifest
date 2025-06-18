@@ -18,3 +18,4 @@ max_component
 rotate_cw
 min_pixel
 mirror_horizontal
+mirror_vertical
