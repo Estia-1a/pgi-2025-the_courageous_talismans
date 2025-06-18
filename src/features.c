@@ -330,6 +330,9 @@ void mirror_horizontal(const char *filename){
     }
 
     write_image_data("image_out.bmp", nouvelle_image, height, width);
+
+}
+
 void min_component(char *source_path, char component){
     unsigned char *data = NULL;
     int width = 0, height = 0, channel_count = 0;
