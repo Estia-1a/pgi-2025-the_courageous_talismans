@@ -24,22 +24,25 @@ void tenth_pixel(char *source_path) {
 
 
 
-void first_pixel (char *source_path){
+void second_line(char *source_path){
     unsigned char *data = NULL;
     int width=0, height=0, channel_count=0;
+    int x = 0;
+    int y = 1;
+    int index = (y * width + x) + channel_count;
 
     read_image_data(source_path, &data, &width, &height, &channel_count);
 
-    unsigned char r = data[0];
-    unsigned char g = data[1];
-    unsigned char b = data[2];
+    unsigned char r = data[index + 0];
+    unsigned char g = data[index + 1];
+    unsigned char b = data[index + 2];
 
-    printf("first_pixel : %d, %d, %d\n", r, g, b);
+    printf("second_line : %d, %d, %d\n", r, g, b);
     
 }
 
 
-void second_line (char *source_path){
+void first_pixel (char *source_path){
     unsigned char *data = NULL;
     int width=0, height=0, channel=0;
 
@@ -49,7 +52,7 @@ void second_line (char *source_path){
     unsigned char g = data[1];
     unsigned char b = data[2];
 
-    printf("second_line : %d, %d, %d\n", r, g, b);
+    printf("first_pixel : %d, %d, %d\n", r, g, b);
     
 }
 
@@ -166,7 +169,7 @@ void color_green(const char *filename){
 }
 
 
-void color_bleu(const char *filename){
+void color_blue(const char *filename){
     unsigned char *data = NULL;
     int width, height, n;
     read_image_data(filename, &data, &width, &height, &n);
@@ -299,7 +302,7 @@ void rotate_cw(const char *filename){
             for(int c=0; c<n; c++){
                 int index=(y*width+x)*n+c;
                 int nouveau_x=x;
-                int nouveau_y=width-1-y;
+                int nouveau_y=height-1-y;
                 int index2=(nouveau_x*height+nouveau_y)*n+c;
                 nouvelle_image[index2]=data[index];
             }
@@ -308,6 +311,33 @@ void rotate_cw(const char *filename){
     }
 
     write_image_data("image_out.bmp", nouvelle_image, height, width);
+    free(data);
+    free(nouvelle_image);
+}
+
+void rotate_acw(const char *filename){
+    unsigned char *data = NULL;
+    int width, height, n;
+    read_image_data(filename, &data, &width, &height, &n);
+
+    unsigned char *nouvelle_image = malloc(width*height*n);
+
+    for (int y=0; y<height; y++){
+        for(int x=0; x<width; x++){
+            for(int c=0; c<n; c++){
+                int index=(y*width+x)*n+c;
+                int nouveau_x=y;
+                int nouveau_y=width-1-x;
+                int index2=(nouveau_y*height+nouveau_x)*n+c;
+                nouvelle_image[index2]=data[index];
+            }
+            
+        }
+    }
+
+    write_image_data("image_out.bmp", nouvelle_image, height, width);
+    free(data);
+    free(nouvelle_image);
 }
 
 
@@ -374,4 +404,198 @@ void min_component(char *source_path, char component){
     }
 
     printf("min_component %c (%d, %d): %d\n", component, min_x, min_y, min_value);
+}
+
+void mirror_vertical(const char *filename){
+    unsigned char *data = NULL;
+    int width, height, n;
+    read_image_data(filename, &data, &width, &height, &n);
+
+    unsigned char *nouvelle_image = malloc(width*height*n);
+
+    for (int y=0; y<height; y++){
+        for(int x=0; x<width; x++){
+            for(int c=0; c<n; c++){
+                int index=(y*width+x)*n+c;
+                int nouveau_y=height-1-y;
+                int nouveau_index=(nouveau_y*width+x)*n+c;
+                nouvelle_image[nouveau_index]=data[index];
+            }
+            
+        }
+    }
+
+    write_image_data("image_out.bmp", nouvelle_image, height, width);
+}
+
+void mirror_total(const char *filename){
+    unsigned char *data = NULL;
+    int width, height, n;
+    read_image_data(filename, &data, &width, &height, &n);
+
+    unsigned char *nouvelle_image = malloc(width*height*n);
+
+    for (int y=0; y<height; y++){
+        for(int x=0; x<width; x++){
+            for(int c=0; c<n; c++){
+                int index=(y*width+x)*n+c;
+                int nouveau_x=width-1-x;
+                int nouveau_y=height-1-y;
+                int nouveau_index=(nouveau_y*width+nouveau_x)*n+c;
+                nouvelle_image[nouveau_index]=data[index];
+            }
+            
+        }
+    }
+
+    write_image_data("image_out.bmp", nouvelle_image, height, width);
+}
+
+void color_desaturate(const char *filename){
+    unsigned char *data = NULL;
+    int width, height, n;
+    read_image_data(filename, &data, &width, &height, &n);
+    unsigned char *nouvelle_image = malloc(width*height*n);
+
+    for (int i=0; i<width*height; i++){
+        int index=i*n;
+
+        unsigned char r = data[index+0];
+        unsigned char g = data[index+1];
+        unsigned char b = data[index+2];
+
+        unsigned char min = (r<g ? (r<b ? r:b):(g<b ? g:b));
+        unsigned char max = (r>g ? (r>b ? r:b):(g>b ? g:b));
+        unsigned char couleur = (min+max)/2;
+        if (n>0) nouvelle_image[index+0]=couleur;
+        if (n>1) nouvelle_image[index+1]=couleur;
+        if (n>2) nouvelle_image[index+2]=couleur;
+        
+    }
+
+    write_image_data("image_out.bmp", nouvelle_image, width, height);
+}
+
+void scale_nearest (const char *filename, float scale){
+    unsigned char *data = NULL;
+    int width, height, n;
+    read_image_data(filename, &data, &width, &height, &n);
+    int nouvelle_largeur = scale*width;
+    int nouvelle_hauteur = scale*height;
+    unsigned char *nouvelle_image = malloc(nouvelle_largeur*nouvelle_hauteur*n);
+
+    for (int y=0 ; y<nouvelle_hauteur ; y++){
+        for (int x=0 ; x<nouvelle_largeur ; x++){
+            int xx=x/scale;
+            int yy=y/scale;
+            if(xx>=width) xx=width-1;
+            if(yy>=height) yy=height-1;
+
+            int index = (yy*width+xx)*n;
+            int nouvelle_index = (y*nouvelle_largeur+x)*n;
+
+            for (int c=0 ; c<n ; c++){
+                nouvelle_image[nouvelle_index+c]=data[index+c];
+            }
+        }
+    }
+    write_image_data("image_out.bmp", nouvelle_image, nouvelle_largeur, nouvelle_hauteur);
+
+}
+
+void mirror_vertical(const char *filename){
+    unsigned char *data = NULL;
+    int width, height, n;
+    read_image_data(filename, &data, &width, &height, &n);
+
+    unsigned char *nouvelle_image = malloc(width*height*n);
+
+    for (int y=0; y<height; y++){
+        for(int x=0; x<width; x++){
+            for(int c=0; c<n; c++){
+                int index=(y*width+x)*n+c;
+                int nouveau_y=height-1-y;
+                int nouveau_index=(nouveau_y*width+x)*n+c;
+                nouvelle_image[nouveau_index]=data[index];
+            }
+            
+        }
+    }
+
+    write_image_data("image_out.bmp", nouvelle_image, height, width);
+}
+
+void mirror_total(const char *filename){
+    unsigned char *data = NULL;
+    int width, height, n;
+    read_image_data(filename, &data, &width, &height, &n);
+
+    unsigned char *nouvelle_image = malloc(width*height*n);
+
+    for (int y=0; y<height; y++){
+        for(int x=0; x<width; x++){
+            for(int c=0; c<n; c++){
+                int index=(y*width+x)*n+c;
+                int nouveau_x=width-1-x;
+                int nouveau_y=height-1-y;
+                int nouveau_index=(nouveau_y*width+nouveau_x)*n+c;
+                nouvelle_image[nouveau_index]=data[index];
+            }
+            
+        }
+    }
+
+    write_image_data("image_out.bmp", nouvelle_image, height, width);
+}
+
+void color_desaturate(const char *filename){
+    unsigned char *data = NULL;
+    int width, height, n;
+    read_image_data(filename, &data, &width, &height, &n);
+    unsigned char *nouvelle_image = malloc(width*height*n);
+
+    for (int i=0; i<width*height; i++){
+        int index=i*n;
+
+        unsigned char r = data[index+0];
+        unsigned char g = data[index+1];
+        unsigned char b = data[index+2];
+
+        unsigned char min = (r<g ? (r<b ? r:b):(g<b ? g:b));
+        unsigned char max = (r>g ? (r>b ? r:b):(g>b ? g:b));
+        unsigned char couleur = (min+max)/2;
+        if (n>0) nouvelle_image[index+0]=couleur;
+        if (n>1) nouvelle_image[index+1]=couleur;
+        if (n>2) nouvelle_image[index+2]=couleur;
+        
+    }
+
+    write_image_data("image_out.bmp", nouvelle_image, width, height);
+}
+
+void scale_nearest (const char *filename, float scale){
+    unsigned char *data = NULL;
+    int width, height, n;
+    read_image_data(filename, &data, &width, &height, &n);
+    int nouvelle_largeur = scale*width;
+    int nouvelle_hauteur = scale*height;
+    unsigned char *nouvelle_image = malloc(nouvelle_largeur*nouvelle_hauteur*n);
+
+    for (int y=0 ; y<nouvelle_hauteur ; y++){
+        for (int x=0 ; x<nouvelle_largeur ; x++){
+            int xx=x/scale;
+            int yy=y/scale;
+            if(xx>=width) xx=width-1;
+            if(yy>=height) yy=height-1;
+
+            int index = (yy*width+xx)*n;
+            int nouvelle_index = (y*nouvelle_largeur+x)*n;
+
+            for (int c=0 ; c<n ; c++){
+                nouvelle_image[nouvelle_index+c]=data[index+c];
+            }
+        }
+    }
+    write_image_data("image_out.bmp", nouvelle_image, nouvelle_largeur, nouvelle_hauteur);
+
 }

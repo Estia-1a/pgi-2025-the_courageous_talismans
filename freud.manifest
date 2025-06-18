@@ -16,6 +16,9 @@ dimension
 max_pixel
 max_component
 rotate_cw
+rotate_acw
 min_pixel
 mirror_horizontal
 min_component
+mirror_vertical
+mirror_total

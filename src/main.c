@@ -56,8 +56,8 @@ int main(int argc, char **argv) {
     color_green(configuration.filenames[0]);
   }
 
-  if (strncmp(configuration.command, "color_bleu", 10)==0){
-    color_bleu(configuration.filenames[0]);
+  if (strncmp(configuration.command, "color_blue", 10)==0){
+    color_blue(configuration.filenames[0]);
   }
 
   if (strncmp(configuration.command, "color_gray", 10)==0){
@@ -94,6 +94,10 @@ int main(int argc, char **argv) {
     rotate_cw(configuration.filenames[0]);
   }
 
+  if (strncmp(configuration.command, "rotate_acw", 10)==0){
+    rotate_acw(configuration.filenames[0]);
+  }
+
     if (strncmp(configuration.command, "min_pixel", 9) == 0) {
       min_pixel(configuration.filenames[0]);
   }
@@ -112,6 +116,21 @@ int main(int argc, char **argv) {
 
   if (strncmp(configuration.command, "min_component", 14) == 0) {
       min_component(configuration.filenames[0], 'B');
+  if (strncmp(configuration.command, "mirror_vertical", 16)==0){
+    mirror_vertical(configuration.filenames[0]);
+  }
+  
+   if (strncmp(configuration.command, "mirror_total", 13)==0){
+    mirror_total(configuration.filenames[0]);
+  }
+
+  if (strncmp(configuration.command, "color_desaturate", 17)==0){
+    color_desaturate(configuration.filenames[0]);
+  }
+
+if (strncmp(configuration.command, "scale_nearest", 14)==0){
+    float scale=atof(configuration.arguments[0]);
+    scale_nearest(configuration.filenames[0], scale);
   }
 
   return 0;
