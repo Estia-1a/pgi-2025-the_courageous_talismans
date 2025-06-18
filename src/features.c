@@ -380,3 +380,26 @@ void mirror_vertical(const char *filename){
 
     write_image_data("image_out.bmp", nouvelle_image, height, width);
 }
+
+void mirror_total(const char *filename){
+    unsigned char *data = NULL;
+    int width, height, n;
+    read_image_data(filename, &data, &width, &height, &n);
+
+    unsigned char *nouvelle_image = malloc(width*height*n);
+
+    for (int y=0; y<height; y++){
+        for(int x=0; x<width; x++){
+            for(int c=0; c<n; c++){
+                int index=(y*width+x)*n+c;
+                int nouveau_x=width-1-x;
+                int nouveau_y=height-1-y;
+                int nouveau_index=(nouveau_y*width+nouveau_x)*n+c;
+                nouvelle_image[nouveau_index]=data[index];
+            }
+            
+        }
+    }
+
+    write_image_data("image_out.bmp", nouvelle_image, height, width);
+}
