@@ -79,7 +79,7 @@ void min_component(char *source_path, char component){
             int value;
             value = data[index];
 
-            if (value > min_value){
+            if (value < min_value){
                 min_value = value;
                 min_x = x;
                 min_y = y;
