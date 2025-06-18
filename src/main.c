@@ -133,6 +133,10 @@ if (strncmp(configuration.command, "scale_nearest", 14)==0){
     scale_nearest(configuration.filenames[0], scale);
   }
 
+   if (strncmp(configuration.command, "stat_report", 11) == 0) {
+      stat_report(configuration.filenames[0]);
+  }
+
   return 0;
 }
 
