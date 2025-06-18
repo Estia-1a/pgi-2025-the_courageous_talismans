@@ -60,7 +60,7 @@ void dimension (char *source_path) {
     unsigned char *data;
 
     read_image_data(source_path, &data, &width, &height, &channel);
-        printf("dimention : %d, %d\n", width, height);
+        printf("dimension : %d, %d\n", width, height);
 
 }
 
