@@ -21,6 +21,7 @@ void rotate_cw (const char *filename);
 void mirror_horizontal (const char *filename);
 void mirror_vertical (const char *filename);
 void rotate_acw (const char *filename);
+<<<<<<< HEAD
 void mirror_total (const char *filename);
 void color_desaturate (const char *filename);
 void scale_nearest (const char *filename, float scale);
@@ -28,4 +29,7 @@ void min_component(char*source_path, char component);
 void stat_report(char *source_path);
 
 
+=======
+void scale_crop (const char *filename, int center_x, int center_y, int crop_w, int crop_h);
+>>>>>>> 8d1fe5a (add fonction not ok CROP)
 #endif

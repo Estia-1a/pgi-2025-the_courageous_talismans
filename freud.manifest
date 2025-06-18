@@ -19,7 +19,12 @@ rotate_cw
 rotate_acw
 min_pixel
 mirror_horizontal
+<<<<<<< HEAD
 min_component
 mirror_vertical
 mirror_total
 stat_report
+=======
+mirror_vertical
+scale_crop
+>>>>>>> 8d1fe5a (add fonction not ok CROP)
