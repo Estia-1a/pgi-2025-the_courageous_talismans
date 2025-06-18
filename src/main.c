@@ -35,7 +35,9 @@ int main(int argc, char **argv) {
 
   
   if ( strncmp( configuration.command, "print_pixel", 12 ) == 0 ) {
-    print_pixel(configuration.filenames[0], 45, 500);
+    int x = atoi(configuration.arguments[0]);
+    int y = atoi(configuration.arguments[1]);
+    print_pixel(configuration.filenames[0], x, y);
   }
  
   if (strncmp(configuration.command, "tenth_pixel", 11) == 0) {
