@@ -22,7 +22,21 @@ void tenth_pixel(char *source_path) {
     }
 }
 
+void print_pixel( char *filename, int x, int y ){
+    unsigned char *data = NULL;
+    int width=0, height=0, n=0;
 
+    read_image_data(filename, &data, &width, &height, &n);
+
+    pixelRGB *pixel = get_pixel(data, width, height, n, x, y);
+
+    if (pixel == NULL){
+        printf("Les coordonnees ne sont pas valides.\n");
+    }
+    else{
+        printf("Pixel (%d, %d) : %d, %d, %d\n",x, y, (*pixel).r, (*pixel).g, (*pixel).b );
+    }
+}
 
 void second_line(char *source_path){
     unsigned char *data = NULL;
@@ -359,7 +373,7 @@ void mirror_horizontal(const char *filename){
         }
     }
 
-    write_image_data("image_out.bmp", nouvelle_image, height, width);
+    write_image_data("image_out.bmp", nouvelle_image, width, height);
 }
 
 void mirror_vertical(const char *filename){
@@ -381,7 +395,7 @@ void mirror_vertical(const char *filename){
         }
     }
 
-    write_image_data("image_out.bmp", nouvelle_image, height, width);
+    write_image_data("image_out.bmp", nouvelle_image, width, height);
 }
 
 void mirror_total(const char *filename){
@@ -404,7 +418,7 @@ void mirror_total(const char *filename){
         }
     }
 
-    write_image_data("image_out.bmp", nouvelle_image, height, width);
+    write_image_data("image_out.bmp", nouvelle_image, width, height);
 }
 
 void color_desaturate(const char *filename){
