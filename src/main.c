@@ -103,7 +103,9 @@ int main(int argc, char **argv) {
   }
 
 
-
+  if (strncmp(configuration.command, "min_component", 14) == 0) {
+      min_component(configuration.filenames[0], 'B');
+  }
 
   if (strncmp(configuration.command, "mirror_vertical", 16)==0){
     mirror_vertical(configuration.filenames[0]);
@@ -117,12 +119,12 @@ int main(int argc, char **argv) {
     color_desaturate(configuration.filenames[0]);
   }
 
-if (strncmp(configuration.command, "scale_nearest", 14)==0){
-    float scale=atof(configuration.arguments[0]);
-    scale_nearest(configuration.filenames[0], scale);
+  if (strncmp(configuration.command, "scale_nearest", 14)==0){
+      float scale=atof(configuration.arguments[0]);
+      scale_nearest(configuration.filenames[0], scale);
   }
 
-   if (strncmp(configuration.command, "stat_report", 11) == 0) {
+  if (strncmp(configuration.command, "stat_report", 11) == 0) {
       stat_report(configuration.filenames[0]);
   }
 
@@ -155,6 +157,5 @@ if (strncmp(configuration.command, "scale_nearest", 14)==0){
     min_component(configuration.filenames[0], comp);
 }
   return 0;
-  }
 }
 
