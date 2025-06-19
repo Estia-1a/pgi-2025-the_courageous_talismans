@@ -102,17 +102,8 @@ int main(int argc, char **argv) {
     mirror_horizontal(configuration.filenames[0]);
   }
 
-  if (strncmp(configuration.command, "min_component", 14) == 0) {
-      min_component(configuration.filenames[0], 'R');
-  }
-  
-  if (strncmp(configuration.command, "min_component", 14) == 0) {
-      min_component(configuration.filenames[0], 'G');
-  }
 
-  if (strncmp(configuration.command, "min_component", 14) == 0) {
-      min_component(configuration.filenames[0], 'B');
-  }
+
 
   if (strncmp(configuration.command, "mirror_vertical", 16)==0){
     mirror_vertical(configuration.filenames[0]);
@@ -144,7 +135,7 @@ if (strncmp(configuration.command, "scale_nearest", 14)==0){
 // }
 
 
- if (strcmp(configuration.command, "max_component") == 0) {
+  if (strcmp(configuration.command, "max_component") == 0) {
     if (argc < 6) {
         fprintf(stderr, "Usage: -c max_component <R|G|B>\n");
         return 1;
@@ -154,6 +145,15 @@ if (strncmp(configuration.command, "scale_nearest", 14)==0){
     max_component(configuration.filenames[0], comp);
 }
  
+  if (strcmp(configuration.command, "min_component") == 0) {
+    if (argc < 6) {
+        fprintf(stderr, "Usage: -c min_component <R|G|B>\n");
+        return 1;
+    }
+ 
+    char comp = argv[5][0];
+    min_component(configuration.filenames[0], comp);
+}
   return 0;
   }
 }
