@@ -301,9 +301,9 @@ void rotate_cw(const char *filename){
         for(int x=0; x<width; x++){
             for(int c=0; c<n; c++){
                 int index=(y*width+x)*n+c;
-                int nouveau_x=x;
-                int nouveau_y=width-1-y;
-                int index2=(nouveau_x*height+nouveau_y)*n+c;
+                int nouveau_x=height-1-y;
+                int nouveau_y=x;
+                int index2=(nouveau_y*height+nouveau_x)*n+c;
                 nouvelle_image[index2]=data[index];
             }
             
@@ -359,7 +359,7 @@ void mirror_horizontal(const char *filename){
         }
     }
 
-    write_image_data("image_out.bmp", nouvelle_image, height, width);
+    write_image_data("image_out.bmp", nouvelle_image, width, height);
 }
 
 void mirror_vertical(const char *filename){
@@ -381,7 +381,7 @@ void mirror_vertical(const char *filename){
         }
     }
 
-    write_image_data("image_out.bmp", nouvelle_image, height, width);
+    write_image_data("image_out.bmp", nouvelle_image, width, height);
 }
 
 void mirror_total(const char *filename){
@@ -404,7 +404,7 @@ void mirror_total(const char *filename){
         }
     }
 
-    write_image_data("image_out.bmp", nouvelle_image, height, width);
+    write_image_data("image_out.bmp", nouvelle_image, width, height);
 }
 
 void color_desaturate(const char *filename){
