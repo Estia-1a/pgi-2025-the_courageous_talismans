@@ -290,6 +290,49 @@ void max_component(char *source_path, char component){
     printf("max_component %c (%d, %d): %d\n", component, max_x, max_y, max_value);
 }
 
+void min_component(char *source_path, char component){
+    unsigned char *data = NULL;
+    int width = 0, height = 0, channel_count = 0;
+
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+
+    int component_index;
+    if (component == 'R') {
+        component_index = 0;
+    } 
+    else if (component == 'G') {
+        component_index = 1;
+    } 
+    else if (component == 'B') {
+        component_index = 2;
+    }
+
+    int x;
+    int y;
+
+    int min_value = 256;
+    int min_x = 0;
+    int min_y = 0;
+
+    for (y = 0; y < height; y++) {
+        for (x = 0; x < width; x++) {
+            int index;
+            index = (y * width + x) * channel_count + component_index;
+            
+            int value;
+            value = data[index];
+
+            if (value < min_value){
+                min_value = value;
+                min_x = x;
+                min_y = y;
+            }
+        }
+    }
+
+    printf("min_component %c (%d, %d): %d\n", component, min_x, min_y, min_value);
+}
+
 void rotate_cw(const char *filename){
     unsigned char *data = NULL;
     int width, height, n;

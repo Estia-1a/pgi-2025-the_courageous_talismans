@@ -85,9 +85,13 @@ int main(int argc, char **argv) {
   }
 
   if (strncmp(configuration.command, "max_component", 14) == 0) {
-    max_component(configuration.filenames[0],'R');
-    max_component(configuration.filenames[0],'G');
-    max_component(configuration.filenames[0],'B'); 
+    char component = configuration.arguments[0][0];
+    max_component(configuration.filenames[0], component);
+  }
+
+  if (strncmp(configuration.command, "min_component", 14) == 0) {
+    char component = configuration.arguments[0][0];
+    min_component(configuration.filenames[0], component);
   }
 
   if (strncmp(configuration.command, "rotate_cw", 10)==0){
