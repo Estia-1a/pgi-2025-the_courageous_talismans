@@ -515,7 +515,6 @@ void print_pixel( char *filename, int x, int y ){
     }
     else{
         printf("Pixel (%d, %d) : %d, %d, %d\n",x, y, (*pixel).r, (*pixel).g, (*pixel).b );
-        free(pixel);
     }
     free(data);
 }
