@@ -84,7 +84,11 @@ int main(int argc, char **argv) {
       max_pixel(configuration.filenames[0]);
   }
 
-
+  if (strncmp(configuration.command, "max_component", 14) == 0) {
+    max_component(configuration.filenames[0],'R');
+    max_component(configuration.filenames[0],'G');
+    max_component(configuration.filenames[0],'B'); 
+  }
 
   if (strncmp(configuration.command, "rotate_cw", 10)==0){
     rotate_cw(configuration.filenames[0]);
@@ -102,11 +106,6 @@ int main(int argc, char **argv) {
     mirror_horizontal(configuration.filenames[0]);
   }
 
-
-  if (strncmp(configuration.command, "min_component", 14) == 0) {
-      min_component(configuration.filenames[0], 'B');
-  }
-
   if (strncmp(configuration.command, "mirror_vertical", 16)==0){
     mirror_vertical(configuration.filenames[0]);
   }
@@ -119,43 +118,10 @@ int main(int argc, char **argv) {
     color_desaturate(configuration.filenames[0]);
   }
 
-  if (strncmp(configuration.command, "scale_nearest", 14)==0){
-      float scale=atof(configuration.arguments[0]);
-      scale_nearest(configuration.filenames[0], scale);
+if (strncmp(configuration.command, "scale_nearest", 14)==0){
+    float scale=atof(configuration.arguments[0]);
+    scale_nearest(configuration.filenames[0], scale);
   }
 
-  if (strncmp(configuration.command, "stat_report", 11) == 0) {
-      stat_report(configuration.filenames[0]);
-  }
-
-// if (strcmp(configuration.command, "scale_crop") == 0) {
-//       int center_x = atoi(argv[5]);
-//       int center_y = atoi(argv[6]);
-//       int crop_w = atoi(argv[7]);
-//       int crop_h = atoi(argv[8]); 
-//       scale_crop(configuration.filenames[0], center_x, center_y, crop_w, crop_h);
-// }
-
-
-  if (strcmp(configuration.command, "max_component") == 0) {
-    if (argc < 6) {
-        fprintf(stderr, "Usage: -c max_component <R|G|B>\n");
-        return 1;
-    }
- 
-    char comp = argv[5][0];
-    max_component(configuration.filenames[0], comp);
-}
- 
-  if (strcmp(configuration.command, "min_component") == 0) {
-    if (argc < 6) {
-        fprintf(stderr, "Usage: -c min_component <R|G|B>\n");
-        return 1;
-    }
- 
-    char comp = argv[5][0];
-    min_component(configuration.filenames[0], comp);
-}
   return 0;
 }
-

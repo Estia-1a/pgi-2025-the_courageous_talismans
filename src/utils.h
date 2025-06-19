@@ -15,6 +15,6 @@ typedef struct _pixelRGB {
 } pixelRGB ;
 
 pixelRGB *get_pixel(unsigned char *data, unsigned int width, unsigned int height, unsigned int n, unsigned int x, unsigned int y);
-void print_pixel( char *filename, int x, int y );
+
 
 #endif
