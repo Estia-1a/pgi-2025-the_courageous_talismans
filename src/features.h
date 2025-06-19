@@ -26,6 +26,6 @@ void color_desaturate (const char *filename);
 void scale_nearest (const char *filename, float scale);
 void min_component(char*source_path, char component);
 void stat_report(char *source_path);
-
+void scale_crop(char *source_path, int center_x, int center_y, int crop_w, int crop_h);
 
 #endif

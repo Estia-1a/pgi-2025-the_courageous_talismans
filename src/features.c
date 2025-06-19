@@ -1,6 +1,7 @@
 #include <estia-image.h>
 #include <stdio.h>
 #include<stdlib.h>
+#include<string.h>
 #include "features.h"
 #include "utils.h"
 
@@ -580,4 +581,28 @@ void stat_report(char *source_path) {
     fprintf(file, "min_component B: %d\n", B_min_val);
  
     fclose(file);
+
+void scale_crop(const char *filename, int center_x, int center_y, int crop_w, int crop_h){
+    unsigned char *data = NULL;
+    int width, height, n;
+    read_image_data(filename, &data, &width, &height, &n);
+    
+    unsigned char *nouvelle_image = malloc(crop_w*crop_h*n);
+
+    int source_x = center_x - crop_w /2;
+    int source_y = center_y - crop_h /2;
+
+    for (int y=0; y<crop_h; y++){
+        for(int x=0; x<crop_w; x++){
+            int source_index = ((source_y+y) * width + (source_x+ x)) * n;
+            int index=(y * crop_w + x) * n;
+
+            for(int c=0; c<n; c++) {                 
+                nouvelle_image[index+c]=data[source_index+c];
+            }
+        }
+    }
+    write_image_data("image_out.bmp", nouvelle_image, crop_w, crop_h);
+
 }
+    }

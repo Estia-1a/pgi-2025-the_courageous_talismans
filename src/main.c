@@ -137,6 +137,15 @@ if (strncmp(configuration.command, "scale_nearest", 14)==0){
       stat_report(configuration.filenames[0]);
   }
 
+// if (strcmp(configuration.command, "scale_crop") == 0) {
+//       int center_x = atoi(argv[5]);
+//       int center_y = atoi(argv[6]);
+//       int crop_w = atoi(argv[7]);
+//       int crop_h = atoi(argv[8]); 
+//       scale_crop(configuration.filenames[0], center_x, center_y, crop_w, crop_h);
+// }
+
+
   return 0;
   }
 }
